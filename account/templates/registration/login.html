@@ -1,0 +1,23 @@
+{% extends "shop/layout.html" %}
+
+
+{% block content %}
+<div id="login">
+	<h1>Iniciar sesión</h1>
+ 	{% if form.errors %}
+ 		<p>
+			Tu ususario y contraseña no concuerdan.
+			Inténtalo de nuevo.
+ 		</p> 		
+ 	{% endif %}
+ 	<div class="login-form">
+ 		<form action="{% url 'login' %}" method="post">
+ 			{{ form.as_p }}
+ 			{% csrf_token %}
+ 			<input type="hidden" name="next" value="{{ next }}" />
+ 			<p><input id="boton" type="submit" value="Iniciar sesión"></p>
+ 		</form>
+		<p><a href="{% url "password_reset" %}">Forgotten your password?</a></p>
+ 	</div>
+</div>
+{% endblock content %}
